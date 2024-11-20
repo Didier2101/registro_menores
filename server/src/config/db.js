@@ -1,5 +1,4 @@
-// db.js
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise"); // Usa el módulo de promesas
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -12,13 +11,19 @@ const pool = mysql.createPool({
 });
 
 // Probar la conexión de inmediato
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error("Error al conectar con la base de datos:".bgRed, err.message);
-  } else {
-    console.log("Conexión exitosa a la base de datos".bgCyan);
-    connection.release(); // Libera la conexión de prueba
+(async () => {
+  try {
+    const connection = await pool.getConnection(); // Obtiene una conexión
+    console.log(
+      "Conexión a la base de datos establecida exitosamente clinica."
+    );
+    connection.release(); // Libera la conexión
+  } catch (err) {
+    console.error(
+      "Error al conectar a la base de datos de clinica:",
+      err.message
+    );
   }
-});
+})();
 
-module.exports = pool.promise();
+module.exports = pool;
