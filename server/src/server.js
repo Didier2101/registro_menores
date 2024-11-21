@@ -5,7 +5,7 @@ const cors = require("cors");
 const colors = require("colors");
 const db = require("./config/db");
 
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 10000;
 
 const usuarioRouter = require("./routes/usuarioRoutes");
 const loginRouter = require("./routes/loginRouter");
