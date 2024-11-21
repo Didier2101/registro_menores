@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { TextField, Button, Box, CircularProgress, Typography, Alert, AlertTitle } from "@mui/material";
 
 const API = import.meta.env.VITE_API_URL;
+console.log('La URL de la API es:', API);
 const Login = () => {
     const [usuario, setUsuario] = useState("");
     const [contrasena, setContrasena] = useState("");
@@ -58,7 +59,7 @@ const Login = () => {
                 setError(data.error || "Usuario o contraseña incorrectos.");
             }
         } catch (error) {
-            setError("Ocurrió un error inesperado.");
+            setError("Ocurrió un error inesperado.", error);
         } finally {
             setLoading(false);
         }
